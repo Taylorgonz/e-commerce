@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: Category,
-          attributes: ['category_name']
+          attributes: ['category_name'],
         },
         {
-          model: tag,
+          model: Tag,
           attributes: ['tag_name']
         },
       ],
@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 });
 
 // get one product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   try { 
     const products = await Product.findByPk(req.params.id, {
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
           attributes: ['category_name']
         },
         {
-          model: tag,
+          model: Tag,
           attributes: ['tag_name']
         },
       ],
